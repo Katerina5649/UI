@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>TestTriangle</groupId>
+    <artifactId>org.TestTriangle</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--задаем переменные-->
+    <properties>
+        <triangleGroup/>
+
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>IsRectangle</id>
+            <properties>
+                <triangleGroup>categories.Rectangle</triangleGroup>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>IsAcute-angled</id>
+            <properties>
+                <triangleGroup>Acute-angled</triangleGroup>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>IsObtuse</id>
+            <properties>
+                <triangleGroup>Optuse</triangleGroup>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <groups>${triangleGroup}</groups>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
